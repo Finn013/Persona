@@ -190,8 +190,18 @@
     <x.PreferenceCategory a:title="@string/licenses">
 
         <Preference
-            a:summary="@string/license_cpal"
+            a:summary="Persona — форк Fulguris с изолированными профилями. Исходный код: github.com/Finn013/Persona"
             a:title="@string/app_name"
+            x:iconSpaceReserved="false"
+            x:singleLineTitle="false">
+            <intent
+                a:action="android.intent.action.VIEW"
+                a:data="https://github.com/Finn013/Persona" />
+        </Preference>
+
+        <Preference
+            a:summary="@string/license_cpal"
+            a:title="@string/app_name_fulguris"
             x:icon="@drawable/ic_lightning"
             x:iconSpaceReserved="false"
             x:singleLineTitle="false">

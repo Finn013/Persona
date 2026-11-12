@@ -68,7 +68,8 @@ class HomePageInitializer @Inject constructor(
 ) : TabInitializer {
 
     override fun initialize(webView: WebView, headers: Map<String, String>) {
-        val homepage = userPreferences.homepage
+        // Persona: the profile start page replaces the home page inside that profile
+        val homepage = com.finn013.persona.Persona.current?.startUrl?.takeIf { it.isNotBlank() } ?: userPreferences.homepage
 
         when (homepage) {
             Uris.AboutHome -> startPageInitializer

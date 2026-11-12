@@ -82,7 +82,7 @@ class UserPreferences @Inject constructor(
     /**
      * True if the browser should block ads, false otherwise.
      */
-    var adBlockEnabled by preferences.booleanPreference(BLOCK_ADS, false)
+    var adBlockEnabled by preferences.booleanPreference(BLOCK_ADS, true) // Persona: on by default
 
     /**
      * True if user scripts should be enabled and injected into web pages, false otherwise.

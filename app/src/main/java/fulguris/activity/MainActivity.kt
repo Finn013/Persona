@@ -13,7 +13,7 @@ import javax.inject.Inject
  * Not used in incognito mode
  */
 @AndroidEntryPoint
-class MainActivity @Inject constructor(): WebBrowserActivity() {
+open class MainActivity @Inject constructor(): WebBrowserActivity() {
 
 
     public override fun updateCookiePreference(): Completable = Completable.fromAction {

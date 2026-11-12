@@ -207,6 +207,8 @@ class App : Application(), SharedPreferences.OnSharedPreferenceChangeListener,
                 incognito = true
                 WebView.setDataDirectorySuffix("incognito")
             }
+            // Persona: profile window processes get their own WebView data directory
+            com.finn013.persona.Persona.initProcess(this)
         }
 
         val defaultHandler = Thread.getDefaultUncaughtExceptionHandler()
@@ -247,15 +249,37 @@ class App : Application(), SharedPreferences.OnSharedPreferenceChangeListener,
             WebView.setWebContentsDebuggingEnabled(true)
         }
 
-        // Set up the correct activity alias based on the incoming view action preference
-        fulguris.utils.ActivityAliasManager.updateEnabledActivity(this, userPreferences.incomingViewAction)
+        // Persona: links from other apps go to the profile chooser (com.finn013.persona.ProfilesActivity),
+        // so the Fulguris VIEW aliases stay disabled.
+        if (com.finn013.persona.Persona.slot == null) fulguris.utils.ActivityAliasManager.disableAll(this)
+        // Persona: no Fulguris introduction screens, terms are shown in the profile list "About".
+        if (!userPreferences.acceptTerms) userPreferences.acceptTerms = true
 
         // Log build and device information
         logBuildInfo()
 
         // Register the "Stealth" and "Settings" dynamic app shortcuts (mirrors LeakCanary's
         // "Leaks" shortcut). Re-registered at every launch so they survive launcher DB resets.
-        registerShortcuts(this)
+        if (com.finn013.persona.Persona.slot == null) registerShortcuts(this)
+    }
+
+    /**
+     * Persona: inside a profile process, tabs/sessions/generated pages live in files/personaN
+     * so every profile has its own tabs.
+     */
+    override fun getFilesDir(): java.io.File {
+        val base = super.getFilesDir()
+        val slot = com.finn013.persona.Persona.slot ?: return base
+        return java.io.File(base, com.finn013.persona.Persona.suffix(slot)).apply { if (!exists()) mkdirs() }
+    }
+
+    /** Persona: per-profile history database. */
+    override fun getDatabasePath(name: String): java.io.File {
+        val slot = com.finn013.persona.Persona.slot
+        if (slot != null && name == "historyManager") {
+            return super.getDatabasePath(name + "_" + com.finn013.persona.Persona.suffix(slot))
+        }
+        return super.getDatabasePath(name)
     }
 
     /**
@@ -279,7 +303,7 @@ class App : Application(), SharedPreferences.OnSharedPreferenceChangeListener,
             return
         }
         val shortcutManager = context.getSystemService(SHORTCUT_SERVICE) as? ShortcutManager ?: return
-        val component = ComponentName(context.packageName, SplashActivity::class.java.name)
+        val component = ComponentName(context.packageName, "com.finn013.persona.ProfilesActivity")
         // The "Stealth" incognito-browser entry (not available while already in incognito mode).
         // Both shortcuts use adaptive icons (colored background + white glyph): a plain
         // transparent glyph gets a white circular backdrop painted behind it by Samsung One

@@ -531,6 +531,8 @@ class WebPageTab(
             setOnTouchListener(tl)
 
             initializeSettings()
+            // Persona: Safe Browsing, no X-Requested-With, profile device spoofing script
+            com.finn013.persona.Spoof.setup(activity, this)
         }
 
         initializePreferences()
@@ -859,6 +861,13 @@ class WebPageTab(
      */
     private fun setUserAgentForPreference(userPreferences: UserPreferences) {
         webView?.settings?.let { settings ->
+            // Persona: a profile with a spoofed device has its own User-Agent and Client Hints
+            val personaUa = com.finn013.persona.Spoof.userAgent(activity)
+            if (personaUa != null) {
+                settings.userAgentString = personaUa
+                if (!com.finn013.persona.Spoof.clientHints(activity, settings)) settings.setReducedClientHints()
+                return
+            }
             settings.userAgentString = userPreferences.userAgent(activity.application)
             settings.setReducedClientHints()
         }

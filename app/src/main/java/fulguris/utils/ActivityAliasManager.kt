@@ -33,6 +33,16 @@ import timber.log.Timber
  */
 object ActivityAliasManager {
 
+    private const val PERSONA = true
+
+    /** Persona: disable every Fulguris incoming VIEW handler. */
+    fun disableAll(context: Context) {
+        val pm = context.packageManager
+        setComponentEnabled(pm, context, ALIAS_BROWSER_ACTIVITY, false)
+        setComponentEnabled(pm, context, ALIAS_INCOGNITO_ACTIVITY, false)
+        setComponentEnabled(pm, context, SELECT_BROWSER_ACTIVITY, false)
+    }
+
     private const val ALIAS_BROWSER_ACTIVITY = "fulguris.alias.default.BrowserActivity"
     private const val ALIAS_INCOGNITO_ACTIVITY = "fulguris.alias.default.IncognitoActivity"
     private const val SELECT_BROWSER_ACTIVITY = "fulguris.activity.SelectBrowserActivity"
@@ -56,6 +66,9 @@ object ActivityAliasManager {
         setComponentEnabled(packageManager, context, ALIAS_BROWSER_ACTIVITY, false)
         setComponentEnabled(packageManager, context, ALIAS_INCOGNITO_ACTIVITY, false)
         setComponentEnabled(packageManager, context, SELECT_BROWSER_ACTIVITY, false)
+
+        // Persona: incoming links always go to the profile chooser, keep Fulguris' handlers disabled.
+        if (PERSONA) return
 
         // Enable the appropriate one based on preference
         when (action) {

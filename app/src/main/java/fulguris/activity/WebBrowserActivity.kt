@@ -400,7 +400,7 @@ abstract class WebBrowserActivity : ThemedBrowserActivity(),
             }
         })
         // Check if terms have been accepted
-        if (!userPreferences.acceptTerms) {
+        if (!userPreferences.acceptTerms && com.finn013.persona.Persona.slot == null) {
             // Show app introduction for first-time users
             startActivity(Intent(this, IntroActivity::class.java))
             // User will have to restart incognito mode himself if this was an incognito activity
@@ -2689,7 +2689,10 @@ abstract class WebBrowserActivity : ThemedBrowserActivity(),
                         && currentView.url.isNotBlank()
                         && !currentView.url.isSpecialUrl()) {
                     HistoryEntry(currentView.url, currentView.title).also {
-                        Utils.createShortcut(this, it, currentView.favicon)
+                        val persona = com.finn013.persona.Persona.current
+                        // Persona: inside a profile, pin "site in this profile" with a profile-coloured icon
+                        if (persona != null) com.finn013.persona.Shortcuts.pin(this, persona, it.url, it.title.ifBlank { persona.name }, currentView.favicon)
+                        else Utils.createShortcut(this, it, currentView.favicon)
                         Timber.d("Creating shortcut: ${it.title} ${it.url}")
                     }
                 }

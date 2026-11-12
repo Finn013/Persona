@@ -109,23 +109,11 @@
         <!-- Make it resizable for Multi-Window mode support, such as Samsung Dex
         Needed to be in the root activity which is our splash screen apparently.
         -->
+        <!-- Persona: the launcher is com.finn013.persona.ProfilesActivity; the Fulguris splash is unused -->
         <activity android:name="fulguris.activity.SplashActivity"
             android:theme="@style/Theme.App.SplashScreen"
             android:resizeableActivity="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.LAUNCHER" />
-                <category android:name="android.intent.category.APP_BROWSER" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false" />
 
         <meta-data
             android:name="android.webkit.WebView.MetricsOptOut"
@@ -146,37 +134,6 @@
             android:exported="true">
 
             <!--  Handle various mime types and allow being used as default viewer -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="http" />
-                <data android:scheme="https" />
-                <data android:scheme="file" />
-                <data android:scheme="inline" />
-                <data android:scheme="about" />
-                <data android:scheme="javascript" />
-                <data android:scheme="fulguris" />
-
-                <data android:mimeType="text/html" />
-                <data android:mimeType="text/plain" />
-                <data android:mimeType="application/xhtml+xml" />
-                <data android:mimeType="application/vnd.wap.xhtml+xml" />
-                <data android:mimeType="application/x-webarchive-xml" />
-            </intent-filter>
-
-            <intent-filter>
-                <action android:name="android.intent.action.WEB_SEARCH" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-
-            <intent-filter>
-                <action android:name="android.intent.action.PROCESS_TEXT" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="text/plain" />
-            </intent-filter>
 
             <intent-filter>
                 <action android:name="info.guardianproject.panic.action.TRIGGER" />
@@ -189,12 +146,6 @@
             See: https://developer.android.com/training/sharing/receive
             We will accept text to put it in the address bar.
              -->
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="text/plain" />
-                <data android:mimeType="text/x-uri" />
-            </intent-filter>
             <!-- Custom action to open the configuration settings bottom sheet (tests / debugging) -->
             <intent-filter>
                 <action android:name="fulguris.action.OPEN_CONFIGURATION" />
@@ -242,37 +193,6 @@
             -->
 
             <!--  Handle various mime types and allow being used as default viewer -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="http" />
-                <data android:scheme="https" />
-                <data android:scheme="file" />
-                <data android:scheme="inline" />
-                <data android:scheme="about" />
-                <data android:scheme="javascript" />
-                <data android:scheme="fulguris" />
-
-                <data android:mimeType="text/html" />
-                <data android:mimeType="text/plain" />
-                <data android:mimeType="application/xhtml+xml" />
-                <data android:mimeType="application/vnd.wap.xhtml+xml" />
-                <data android:mimeType="application/x-webarchive-xml" />
-            </intent-filter>
-
-            <intent-filter>
-                <action android:name="android.intent.action.WEB_SEARCH" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-
-            <intent-filter>
-                <action android:name="android.intent.action.PROCESS_TEXT" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="text/plain" />
-            </intent-filter>
 
             <intent-filter>
                 <action android:name="info.guardianproject.panic.action.TRIGGER" />
@@ -285,12 +205,6 @@
             See: https://developer.android.com/training/sharing/receive
             We will accept text to put it in the address bar.
              -->
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="text/plain" />
-                <data android:mimeType="text/x-uri" />
-            </intent-filter>
 
         </activity>
 
@@ -343,9 +257,228 @@
         </activity-alias>
 
 
+
+        <!-- ===================== Persona ===================== -->
+        <meta-data android:name="android.webkit.WebView.EnableSafeBrowsing" android:value="true" />
+
+        <activity
+            android:name="com.finn013.persona.ProfilesActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.Persona"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.APP_BROWSER" />
+            </intent-filter>
+            <!-- Links from other apps: choose the profile -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:mimeType="text/html" />
+                <data android:mimeType="text/plain" />
+                <data android:mimeType="application/xhtml+xml" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.WEB_SEARCH" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.finn013.persona.EditProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Persona"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Home-screen shortcut trampoline (same name/URI as Persona 0.1, old shortcuts keep working) -->
+        <activity
+            android:name="com.finn013.persona.BrowserActivity"
+            android:exported="true"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:taskAffinity=""
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <activity
+            android:name="com.finn013.persona.slots.Slot0"
+            android:process=":persona0"
+            android:taskAffinity="${applicationId}.persona0"
+            android:launchMode="singleTask"
+            android:alwaysRetainTaskState="true"
+            android:colorMode="wideColorGamut"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="true"
+            android:configChanges="locale|orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|keyboard"
+            android:theme="@style/Theme.App.DayNight"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:exported="false" />
+        <activity
+            android:name="com.finn013.persona.slots.Slot1"
+            android:process=":persona1"
+            android:taskAffinity="${applicationId}.persona1"
+            android:launchMode="singleTask"
+            android:alwaysRetainTaskState="true"
+            android:colorMode="wideColorGamut"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="true"
+            android:configChanges="locale|orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|keyboard"
+            android:theme="@style/Theme.App.DayNight"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:exported="false" />
+        <activity
+            android:name="com.finn013.persona.slots.Slot2"
+            android:process=":persona2"
+            android:taskAffinity="${applicationId}.persona2"
+            android:launchMode="singleTask"
+            android:alwaysRetainTaskState="true"
+            android:colorMode="wideColorGamut"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="true"
+            android:configChanges="locale|orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|keyboard"
+            android:theme="@style/Theme.App.DayNight"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:exported="false" />
+        <activity
+            android:name="com.finn013.persona.slots.Slot3"
+            android:process=":persona3"
+            android:taskAffinity="${applicationId}.persona3"
+            android:launchMode="singleTask"
+            android:alwaysRetainTaskState="true"
+            android:colorMode="wideColorGamut"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="true"
+            android:configChanges="locale|orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|keyboard"
+            android:theme="@style/Theme.App.DayNight"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:exported="false" />
+        <activity
+            android:name="com.finn013.persona.slots.Slot4"
+            android:process=":persona4"
+            android:taskAffinity="${applicationId}.persona4"
+            android:launchMode="singleTask"
+            android:alwaysRetainTaskState="true"
+            android:colorMode="wideColorGamut"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="true"
+            android:configChanges="locale|orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|keyboard"
+            android:theme="@style/Theme.App.DayNight"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:exported="false" />
+        <activity
+            android:name="com.finn013.persona.slots.Slot5"
+            android:process=":persona5"
+            android:taskAffinity="${applicationId}.persona5"
+            android:launchMode="singleTask"
+            android:alwaysRetainTaskState="true"
+            android:colorMode="wideColorGamut"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="true"
+            android:configChanges="locale|orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|keyboard"
+            android:theme="@style/Theme.App.DayNight"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:exported="false" />
+        <activity
+            android:name="com.finn013.persona.slots.Slot6"
+            android:process=":persona6"
+            android:taskAffinity="${applicationId}.persona6"
+            android:launchMode="singleTask"
+            android:alwaysRetainTaskState="true"
+            android:colorMode="wideColorGamut"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="true"
+            android:configChanges="locale|orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|keyboard"
+            android:theme="@style/Theme.App.DayNight"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:exported="false" />
+        <activity
+            android:name="com.finn013.persona.slots.Slot7"
+            android:process=":persona7"
+            android:taskAffinity="${applicationId}.persona7"
+            android:launchMode="singleTask"
+            android:alwaysRetainTaskState="true"
+            android:colorMode="wideColorGamut"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="true"
+            android:configChanges="locale|orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|keyboard"
+            android:theme="@style/Theme.App.DayNight"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:exported="false" />
+        <activity
+            android:name="com.finn013.persona.slots.Slot8"
+            android:process=":persona8"
+            android:taskAffinity="${applicationId}.persona8"
+            android:launchMode="singleTask"
+            android:alwaysRetainTaskState="true"
+            android:colorMode="wideColorGamut"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="true"
+            android:configChanges="locale|orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|keyboard"
+            android:theme="@style/Theme.App.DayNight"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:exported="false" />
+        <activity
+            android:name="com.finn013.persona.slots.Slot9"
+            android:process=":persona9"
+            android:taskAffinity="${applicationId}.persona9"
+            android:launchMode="singleTask"
+            android:alwaysRetainTaskState="true"
+            android:colorMode="wideColorGamut"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="true"
+            android:configChanges="locale|orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|keyboard"
+            android:theme="@style/Theme.App.DayNight"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:exported="false" />
+        <activity
+            android:name="com.finn013.persona.slots.Slot10"
+            android:process=":persona10"
+            android:taskAffinity="${applicationId}.persona10"
+            android:launchMode="singleTask"
+            android:alwaysRetainTaskState="true"
+            android:colorMode="wideColorGamut"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="true"
+            android:configChanges="locale|orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|keyboard"
+            android:theme="@style/Theme.App.DayNight"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:exported="false" />
+        <activity
+            android:name="com.finn013.persona.slots.Slot11"
+            android:process=":persona11"
+            android:taskAffinity="${applicationId}.persona11"
+            android:launchMode="singleTask"
+            android:alwaysRetainTaskState="true"
+            android:colorMode="wideColorGamut"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="true"
+            android:configChanges="locale|orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|keyboard"
+            android:theme="@style/Theme.App.DayNight"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:exported="false" />
+        <!-- =================== /Persona ===================== -->
+
         <!-- Transparent activity for browser selection dialog -->
         <activity
             android:name="fulguris.activity.SelectBrowserActivity"
+            android:enabled="false"
             android:theme="@style/Theme.App.Transparent"
             android:exported="true"
             android:excludeFromRecents="true"

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Persona-specific resources (profile list / editor). -->
+<resources>
+    <color name="persona_accent">#7C6CF2</color>
+    <style name="Theme.Persona" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/persona_accent</item>
+        <item name="colorSecondary">@color/persona_accent</item>
+    </style>
+</resources>
