@@ -271,6 +271,8 @@ class MenuPopupWindow : PopupWindow {
         iBinding.menuItemOptions.isVisible = false
         iBinding.menuItemSettings.isVisible = false
         iBinding.menuItemExit.isVisible = false
+        iBinding.menuItemProfiles.isVisible = false
+        iBinding.menuItemCloseProfile.isVisible = false
 
         // Tab menu items
         iBinding.menuItemPageHistory.isVisible = false
@@ -314,6 +316,8 @@ class MenuPopupWindow : PopupWindow {
             MenuItemId.Options -> iBinding.menuItemOptions.isVisible = true
             MenuItemId.Settings -> iBinding.menuItemSettings.isVisible = true
             MenuItemId.Exit -> iBinding.menuItemExit.isVisible = true
+            MenuItemId.Profiles -> iBinding.menuItemProfiles.isVisible = true
+            MenuItemId.CloseProfile -> iBinding.menuItemCloseProfile.isVisible = true
 
             // Tab menu items
             MenuItemId.TabHistory -> iBinding.menuItemPageHistory.isVisible = true
@@ -348,6 +352,12 @@ class MenuPopupWindow : PopupWindow {
         // Hide FullMenu item when already in full menu mode
         if (currentMode == MenuType.FullMenu) {
             iBinding.menuItemFullMenu.isVisible = false
+        }
+
+        // Persona: profile items only make sense inside a profile window
+        if (isIncognito || com.finn013.persona.Persona.slot == null) {
+            iBinding.menuItemProfiles.isVisible = false
+            iBinding.menuItemCloseProfile.isVisible = false
         }
 
         // Rules that apply in incognito mode

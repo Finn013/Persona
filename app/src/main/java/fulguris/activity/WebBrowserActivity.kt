@@ -767,6 +767,8 @@ abstract class WebBrowserActivity : ThemedBrowserActivity(),
             onMenuItemClicked(iBinding.menuItemDownloads) { dismiss(); executeAction(R.id.action_downloads) }
             onMenuItemClicked(iBinding.menuItemBookmarks) { dismiss(); executeAction(R.id.action_bookmarks) }
             onMenuItemClicked(iBinding.menuItemExit) { dismiss(); executeAction(R.id.action_exit) }
+            onMenuItemClicked(iBinding.menuItemProfiles) { dismiss(); executeAction(R.id.action_persona_profiles) }
+            onMenuItemClicked(iBinding.menuItemCloseProfile) { dismiss(); executeAction(R.id.action_persona_close_profile) }
             onMenuItemClicked(iBinding.menuItemSettings) { dismiss(); executeAction(R.id.action_settings) }
             onMenuItemClicked(iBinding.menuItemOptions) {
                 dismiss()
@@ -2778,6 +2780,21 @@ abstract class WebBrowserActivity : ThemedBrowserActivity(),
             }
             R.id.action_exit -> {
                 closeBrowser()
+                return true
+            }
+            R.id.action_persona_profiles -> {
+                // Persona: bring the profile list (main process, its own task) to the front
+                startActivity(Intent().setClassName(packageName, "com.finn013.persona.ProfilesActivity")
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                return true
+            }
+            R.id.action_persona_close_profile -> {
+                // Persona: keep tabs, close the window and stop this profile's process
+                try { tabsManager.saveState() } catch (e: Exception) { Timber.w(e) }
+                finishAndRemoveTask()
+                android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
+                    android.os.Process.killProcess(android.os.Process.myPid())
+                }, 600)
                 return true
             }
             R.id.action_copy -> {

@@ -129,8 +129,8 @@ android {
             isDefault = true
             // Persona: same application id and signing key as Persona 0.1 so it updates in place
             applicationId "com.finn013.persona"
-            versionCode 2
-            versionName "0.2"
+            versionCode 3
+            versionName "0.3"
         }
 
         /*

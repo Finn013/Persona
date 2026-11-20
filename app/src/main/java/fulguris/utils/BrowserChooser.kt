@@ -134,7 +134,7 @@ object BrowserChooser {
             when (resolveInfos.size) {
                 0 -> {
                     Timber.w("DBG: No browser apps found for URL: $aUrl")
-                    android.widget.Toast.makeText(context, "No browser apps found", android.widget.Toast.LENGTH_SHORT).show()
+                    android.widget.Toast.makeText(context, "Не найдено других браузеров", android.widget.Toast.LENGTH_SHORT).show()
                 }
 
                 1 -> {
@@ -165,7 +165,7 @@ object BrowserChooser {
 
         } catch (e: Exception) {
             Timber.e(e, "DBG: Failed to show browser chooser for URL: $aUrl")
-            android.widget.Toast.makeText(context, "Failed to open URL", android.widget.Toast.LENGTH_SHORT).show()
+            android.widget.Toast.makeText(context, "Не удалось открыть ссылку", android.widget.Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -293,7 +293,7 @@ object BrowserChooser {
                     bottomSheetDialog.dismiss()
                 } catch (e: Exception) {
                     Timber.e(e, "Failed to launch browser: ${selectedBrowser.displayName}")
-                    android.widget.Toast.makeText(context, "Failed to open browser", android.widget.Toast.LENGTH_SHORT).show()
+                    android.widget.Toast.makeText(context, "Не удалось открыть браузер", android.widget.Toast.LENGTH_SHORT).show()
                 }
             }
             // Add padding for better visual appearance

@@ -48,6 +48,16 @@ object MenuItems {
      * Also used to order items in our full menu.
      */
     private val all = mapOf(
+        // Persona: back to the profile list / close this profile window and stop its process
+        MenuItemId.Profiles to MenuItem(
+            id = MenuItemId.Profiles,
+            labelId = R.string.persona_action_profiles,
+            iconId = R.drawable.ic_shield_person_outline,
+            viewId = R.id.menuItemProfiles,
+            canBeInMainMenu = true,
+            canBeInTabMenu = true,
+            defaultMenu = MenuType.MainMenu
+        ),
         MenuItemId.MainMenu to MenuItem(
             id = MenuItemId.MainMenu,
             labelId = R.string.action_main_menu,
@@ -151,6 +161,15 @@ object MenuItems {
             canBeInTabMenu = true,
             defaultMenu = MenuType.HiddenMenu,
             preferredMenu = MenuType.MainMenu
+        ),
+        MenuItemId.CloseProfile to MenuItem(
+            id = MenuItemId.CloseProfile,
+            labelId = R.string.persona_action_close_profile,
+            iconId = R.drawable.ic_tab_close,
+            viewId = R.id.menuItemCloseProfile,
+            canBeInMainMenu = true,
+            canBeInTabMenu = true,
+            defaultMenu = MenuType.MainMenu
         ),
 
         // Tab menu items (can also appear in both menus)

@@ -6,4 +6,6 @@
         <item name="colorPrimary">@color/persona_accent</item>
         <item name="colorSecondary">@color/persona_accent</item>
     </style>
+    <string name="persona_action_profiles">Profiles</string>
+    <string name="persona_action_close_profile">Close profile</string>
 </resources>

@@ -221,6 +221,22 @@
                         app:drawableStartCompat="@drawable/ic_action_delete"
                         android:text="@string/exit" />
 
+                    <TextView
+                        android:id="@+id/menuItemProfiles"
+                        style="@style/BrowserTextMenuItem"
+                        android:visibility="gone"
+                        tools:visibility="visible"
+                        app:drawableStartCompat="@drawable/ic_shield_person_outline"
+                        android:text="@string/persona_action_profiles" />
+
+                    <TextView
+                        android:id="@+id/menuItemCloseProfile"
+                        style="@style/BrowserTextMenuItem"
+                        android:visibility="gone"
+                        tools:visibility="visible"
+                        app:drawableStartCompat="@drawable/ic_tab_close"
+                        android:text="@string/persona_action_close_profile" />
+
                     <!-- Tab/Web page menu items -->
                     <TextView
                         android:id="@+id/menuItemPageHistory"

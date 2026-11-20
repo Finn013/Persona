@@ -28,6 +28,8 @@ package fulguris.browser
  */
 enum class MenuItemId {
     // Main menu items
+    Profiles,
+    CloseProfile,
     TabMenu,
     Sessions,
     Bookmarks,

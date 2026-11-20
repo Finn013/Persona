@@ -237,6 +237,22 @@ class App : Application(), SharedPreferences.OnSharedPreferenceChangeListener,
         val requestLocale = fulguris.locale.LocaleUtils.requestedLocale(userPreferences.locale)
         fulguris.locale.LocaleUtils.updateLocale(this, requestLocale)
 
+        // Persona 0.3: remove the Fulguris promo bookmarks that 0.2 installed (once, main process only)
+        if (com.finn013.persona.Persona.slot == null) {
+            val sp = getSharedPreferences("persona_migrations", MODE_PRIVATE)
+            if (!sp.getBoolean("fulguris_bookmarks_removed", false)) {
+                try {
+                    val junk = listOf("fulguris.slions.net", "github.com/slion/fulguris", "net.slions.fulguris")
+                    bookmarkModel.getAllBookmarksSorted().blockingGet()
+                        .filter { e -> junk.any { e.url.lowercase().contains(it) } }
+                        .forEach { bookmarkModel.deleteBookmark(it).blockingGet() }
+                } catch (e: Exception) {
+                    Timber.w(e, "Persona: bookmark cleanup failed")
+                }
+                sp.edit().putBoolean("fulguris_bookmarks_removed", true).apply()
+            }
+        }
+
         // Import default bookmarks if none present
         // Now doing this synchronously as on fast devices it could result in not showing the bookmarks on first start
         if (bookmarkModel.count()==0L) {

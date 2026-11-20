@@ -48,6 +48,8 @@
     <item name="action_add_bookmark" type="id" />
     <item name="action_sessions" type="id" />
     <item name="action_exit" type="id" />
+    <item name="action_persona_profiles" type="id" />
+    <item name="action_persona_close_profile" type="id" />
     <item name="action_block" type="id" />
     <item name="action_translate" type="id" />
     <item name="action_toggle_cursor" type="id" />

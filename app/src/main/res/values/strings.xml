@@ -44,7 +44,7 @@
     <string name="settings_more">More</string>
     <string name="update_available">Update available</string>
     <string name="update_check_error">Update check error, try again later</string>
-    <string name="up_to_date">Fulguris is up to date</string>
+    <string name="up_to_date">Persona is up to date</string>
     <string name="show">Show</string>
     <string name="cache">Clear cache on exit</string>
     <string name="reflow">Enable text reflow</string>
@@ -217,8 +217,8 @@
     <string name="suggestion">Search for</string>
     <string name="checking_for_updates">Checking for updates…</string>
     <string name="dialog_title_updated">See what\'s new?</string>
-    <string name="dialog_message_updated">Fulguris was updated to v%s</string>
-    <string name="title_welcome">Welcome to Fulguris</string>
+    <string name="dialog_message_updated">Persona was updated to v%s</string>
+    <string name="title_welcome">Welcome to Persona</string>
     <string name="message_welcome">Visit our home page to find out more about this powerful web browser?</string>
 
 
@@ -415,7 +415,7 @@
     <string name="pref_summary_off_crash_reports">Crash reports will not be sent</string>
     <string name="pref_summary_on_analytics">Help improve the app by sending usage data</string>
     <string name="pref_summary_off_analytics">Usage data will not be sent</string>
-    <string name="pref_title_accept_terms">I want to use Fulguris</string>
+    <string name="pref_title_accept_terms">I want to use Persona</string>
     <string name="pref_summary_on_accept_terms">You have accepted our terms and conditions</string>
     <string name="pref_summary_off_accept_terms">Accept our terms and conditions to continue</string>
 
@@ -642,7 +642,7 @@
 
     <!--  Third-party app launch prompt -->
     <string name="dialog_title_third_party_app">Launch third-party app?</string>
-    <string name="dialog_message_third_party_app">You will leave Fulguris</string>
+    <string name="dialog_message_third_party_app">You will leave Persona</string>
 
     <string name="per_month">\u0020/ month</string>
     <string name="per_year">\u0020/ year</string>
@@ -669,7 +669,7 @@
     <string name="stop_tts">Stop reading</string>
 
     <!-- Application name which can be translated -->
-    <string name="locale_app_name">Fulguris Web Browser</string>
+    <string name="locale_app_name">Persona Web Browser</string>
 
     <!--
     Long press on image link disambiguation:
@@ -801,14 +801,14 @@
     <string name="message_render_process_crashed">Render process crashed. You may need to reload some web pages.</string>
 
     <!-- App Introduction Strings -->
-    <string name="intro_welcome_title">Welcome to Fulguris</string>
+    <string name="intro_welcome_title">Welcome to Persona</string>
     <string name="intro_welcome_description">Experience fast, secure, and customizable web browsing with advanced privacy features and modern design.</string>
     <string name="intro_title_terms">Let\'s Get Started!</string>
     <string name="intro_title_telemetry">Help Us, Help You!</string>
     <string name="intro_title_ad_blocker">Be Safe!</string>
     <string name="intro_description_ad_blocker">Enable our powerful ad blocker to browse faster, safer, and with fewer distractions. You can always change this later in settings.</string>
     <string name="intro_notification_permission_title">Notification permission</string>
-    <string name="intro_notification_permission_description">Allow Fulguris to send notifications, notably for download completion and during private sessions.</string>
+    <string name="intro_notification_permission_description">Allow Persona to send notifications, notably for download completion and during private sessions.</string>
 
     <string name="pref_title_enable_ad_blocker">Ad blocker</string>
     <string name="pref_summary_on_enable_ad_blocker">Enjoy a cleaner, safer web experience</string>

@@ -30,7 +30,7 @@
     <string name="settings_more">Ещё</string>
     <string name="update_available">Доступно обновление</string>
     <string name="update_check_error">Ошибка проверки обновлений, попробуйте позже</string>
-    <string name="up_to_date">Fulguris обновлён</string>
+    <string name="up_to_date">Persona обновлена</string>
     <string name="show">Показать</string>
     <string name="cache">Очищать кэш при выходе</string>
     <string name="reflow">Включить перекомпоновку</string>
@@ -199,8 +199,8 @@
     <string name="suggestion">Искать</string>
     <string name="checking_for_updates">Проверка обновлений...</string>
     <string name="dialog_title_updated">Посмотреть что нового?</string>
-    <string name="dialog_message_updated">Fulguris обновлён до версии v%s</string>
-    <string name="title_welcome">Добро пожаловать в Fulguris</string>
+    <string name="dialog_message_updated">Persona обновлена до версии v%s</string>
+    <string name="title_welcome">Добро пожаловать в Persona</string>
     <string name="message_welcome">Посетить нашу домашнюю страницу, чтобы узнать больше об этом мощном веб-браузере?</string>
     <string name="block_ads">Блокировщик рекламы</string>
     <string name="block_remote_frequency_daily">Ежедневно</string>
@@ -377,7 +377,7 @@
     <string name="pref_summary_off_crash_reports">Отчеты о сбоях не будут отправлены</string>
     <string name="pref_summary_on_analytics">Помогите улучшить приложение, отправляя данные об использовании</string>
     <string name="pref_summary_off_analytics">Данные об использовании не будут отправлены</string>
-    <string name="pref_title_accept_terms">Я хочу использовать Fulguris</string>
+    <string name="pref_title_accept_terms">Я хочу использовать Persona</string>
     <string name="pref_summary_on_accept_terms">Вы приняли наши условия использования</string>
     <string name="pref_summary_off_accept_terms">Примите наши условия использования, чтобы продолжить</string>
     <string name="pref_summary_color_mode">Применить цвет веб-страницы к панели инструментов и строке состояния</string>
@@ -575,7 +575,7 @@
     <string name="pref_summary_off_task_icon">Использовать значок приложения</string>
     <string name="pref_title_toolbar_label">Ярлык панели инструментов</string>
     <string name="dialog_title_third_party_app">Запустить стороннее приложение?</string>
-    <string name="dialog_message_third_party_app">Вы покинете Fulguris</string>
+    <string name="dialog_message_third_party_app">Вы покинете Persona</string>
     <string name="per_month">\u0020/ месяц</string>
     <string name="per_year">\u0020/ год</string>
     <string name="session_default">@string/agent_default</string>
@@ -595,7 +595,7 @@
     <string name="reading_mode_image_caption">Изображение с подписью</string>
     <string name="tts">Прочитать страницу</string>
     <string name="stop_tts">Остановить чтение</string>
-    <string name="locale_app_name">Веб-браузер Fulguris</string>
+    <string name="locale_app_name">Веб-браузер Persona</string>
     <string name="button_link">Ссылка</string>
     <string name="button_image">Изображение</string>
     <string name="notify_tab_closed">Вкладка закрыта</string>
@@ -692,14 +692,14 @@
     <string name="label_session">Сессия</string>
     <string name="label_app_name">Название приложения</string>
     <string name="message_render_process_crashed">Процесс рендеринга завершился сбоем. Возможно, вам придется перезагрузить некоторые веб-страницы.</string>
-    <string name="intro_welcome_title">Добро пожаловать в Fulguris</string>
+    <string name="intro_welcome_title">Добро пожаловать в Persona</string>
     <string name="intro_welcome_description">Испытайте быстрый, безопасный и настраиваемый веб-браузер с расширенными функциями конфиденциальности и современным дизайном.</string>
     <string name="intro_title_terms">Начнём!</string>
     <string name="intro_title_telemetry">Помогите нам помочь вам!</string>
     <string name="intro_title_ad_blocker">Будьте в безопасности!</string>
     <string name="intro_description_ad_blocker">Включите наш мощный блокировщик рекламы для более быстрого, безопасного просмотра с меньшим количеством отвлекающих факторов. Вы всегда можете изменить это позже в настройках.</string>
     <string name="intro_notification_permission_title">Разрешение на уведомления</string>
-    <string name="intro_notification_permission_description">Разрешить Fulguris отправлять уведомления, особенно о завершении загрузок и во время приватных сеансов.</string>
+    <string name="intro_notification_permission_description">Разрешить Persona отправлять уведомления, особенно о завершении загрузок и во время приватных сеансов.</string>
     <string name="pref_title_enable_ad_blocker">Блокировщик рекламы</string>
     <string name="pref_summary_on_enable_ad_blocker">Наслаждайтесь более чистым и безопасным интернетом</string>
     <string name="pref_summary_off_enable_ad_blocker">Наслаждайтесь нефильтрованной, оригинальной версией интернета</string>
