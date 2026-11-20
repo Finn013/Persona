@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src * data:; style-src 'self' 'unsafe-inline'">
+<title>Persona</title>
+<style>
+  :root { --bg:#17181b; --bar:#202227; --tab:#2a2c32; --tabh:#33363d; --fg:#e8e9ec; --dim:#9aa0aa; --acc:#5b8def; }
+  * { box-sizing: border-box; }
+  html, body { margin:0; height:100%; background:var(--bg); color:var(--fg); font:13px "Segoe UI", system-ui, sans-serif; overflow:hidden; }
+  body { display:flex; flex-direction:column; }
+  #stripe { height:3px; background:var(--acc); flex:none; }
+  #tabs { display:flex; align-items:flex-end; gap:2px; padding:6px 6px 0; background:var(--bg); flex:none; overflow-x:auto; scrollbar-width:none; }
+  #tabs::-webkit-scrollbar { display:none; }
+  .tab { display:flex; align-items:center; gap:6px; min-width:60px; max-width:220px; flex:1 1 220px; height:32px; padding:0 8px 0 10px;
+         background:var(--tab); border-radius:8px 8px 0 0; color:var(--dim); cursor:default; user-select:none; }
+  .tab:hover { background:var(--tabh); }
+  .tab.active { background:var(--bar); color:var(--fg); }
+  .tab img { width:16px; height:16px; flex:none; }
+  .tab .t { flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .tab .x { width:18px; height:18px; border-radius:4px; display:flex; align-items:center; justify-content:center; flex:none; font-size:14px; }
+  .tab .x:hover { background:#ffffff22; }
+  .tab.loading img { animation: spin 1s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  #plus { width:30px; height:30px; margin:0 4px 1px; border:0; border-radius:6px; background:transparent; color:var(--fg); font-size:18px; flex:none; }
+  #plus:hover { background:var(--tab); }
+  #bar { display:flex; align-items:center; gap:4px; padding:6px; background:var(--bar); flex:none; }
+  #bar button { width:30px; height:30px; border:0; border-radius:6px; background:transparent; color:var(--fg); font-size:16px; flex:none; }
+  #bar button:hover:not(:disabled) { background:#ffffff18; }
+  #bar button:disabled { opacity:.35; }
+  #addr { flex:1; height:30px; padding:0 12px; border-radius:15px; border:1px solid transparent; background:var(--bg); color:var(--fg); font-size:13px; outline:none; min-width:60px; }
+  #addr:focus { border-color:var(--acc); }
+  #pname { padding:3px 10px; border-radius:10px; background:var(--acc); color:#fff; font-size:12px; white-space:nowrap; max-width:160px; overflow:hidden; text-overflow:ellipsis; flex:none; }
+  #apptitle { flex:1; color:var(--dim); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding:0 6px; }
+  #views { flex:1; position:relative; background:#fff; }
+  webview { position:absolute; inset:0; width:100%; height:100%; visibility:hidden; }
+  webview.active { visibility:visible; }
+  #menu { position:fixed; right:8px; top:84px; background:#2a2c32; border:1px solid #3a3d44; border-radius:8px; padding:4px; min-width:250px; display:none; z-index:10; box-shadow:0 8px 24px #0008; }
+  #menu div { padding:8px 12px; border-radius:5px; cursor:default; }
+  #menu div:hover { background:#ffffff14; }
+  #menu hr { border:0; border-top:1px solid #3a3d44; margin:4px 0; }
+  #find { position:fixed; right:12px; top:84px; display:none; gap:4px; align-items:center; background:#2a2c32; border:1px solid #3a3d44; border-radius:8px; padding:6px; z-index:9; }
+  #find input { width:200px; height:26px; background:var(--bg); color:var(--fg); border:1px solid #3a3d44; border-radius:5px; padding:0 8px; outline:none; }
+  #find button { border:0; background:transparent; color:var(--fg); width:26px; height:26px; border-radius:5px; }
+  #find button:hover { background:#ffffff18; }
+  #findn { color:var(--dim); min-width:44px; text-align:center; }
+  #toast { position:fixed; left:50%; bottom:20px; transform:translateX(-50%); background:#2a2c32; border:1px solid #3a3d44; padding:10px 16px; border-radius:8px; display:none; z-index:11; }
+  body.app #tabs, body.app #addr, body.app #pname { display:none; }
+  body:not(.app) #apptitle { display:none; }
+  body.app #menu, body.app #find { top:48px; }
+</style>
+</head>
+<body>
+  <div id="stripe"></div>
+  <div id="tabs"><button id="plus" title="Новая вкладка (Ctrl+T)">+</button></div>
+  <div id="bar">
+    <button id="back" title="Назад (Alt+←)">←</button>
+    <button id="fwd" title="Вперёд (Alt+→)">→</button>
+    <button id="reload" title="Обновить (F5)">⟳</button>
+    <span id="pname"></span>
+    <input id="addr" spellcheck="false" placeholder="Адрес или запрос для поиска">
+    <span id="apptitle"></span>
+    <button id="more" title="Меню">⋮</button>
+  </div>
+  <div id="views"></div>
+  <div id="menu"></div>
+  <div id="find"><input id="findq" placeholder="Найти на странице"><span id="findn"></span>
+    <button id="findp" title="Назад">↑</button><button id="findnx" title="Далее">↓</button><button id="findx" title="Закрыть">✕</button></div>
+  <div id="toast"></div>
+  <script src="browser.js"></script>
+</body>
+</html>

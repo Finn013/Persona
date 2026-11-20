@@ -1,0 +1,46 @@
+name: Build Windows
+
+on:
+  push:
+    branches: [main]
+    paths: ['desktop/**', '.github/workflows/desktop.yml']
+  workflow_dispatch:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    if: github.event_name != 'release' || startsWith(github.event.release.tag_name, 'win-')
+    runs-on: windows-latest
+    timeout-minutes: 40
+    defaults:
+      run:
+        working-directory: desktop
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install
+        run: npm install --no-audit --no-fund
+      - name: Build (Setup + Portable)
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+        run: npx electron-builder --win nsis portable --x64 --publish never
+      - name: List
+        shell: bash
+        run: ls -la dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Persona-windows
+          path: |
+            desktop/dist/*.exe
+      - name: Attach to release
+        if: github.event_name == 'release'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ github.event.release.tag_name }}" dist/Persona-Setup-*.exe dist/Persona-Portable-*.exe --clobber

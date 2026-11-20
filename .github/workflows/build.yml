@@ -3,6 +3,7 @@ name: Build APK
 on:
   push:
     branches: [main]
+    paths-ignore: ['desktop/**', '.github/workflows/desktop.yml']
   workflow_dispatch:
   release:
     types: [published]
@@ -12,6 +13,7 @@ permissions:
 
 jobs:
   build:
+    if: github.event_name != 'release' || !startsWith(github.event.release.tag_name, 'win-')
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:

@@ -1,0 +1,41 @@
+{
+  "name": "persona-desktop",
+  "productName": "Persona",
+  "version": "0.1.0",
+  "description": "Браузер с изолированными профилями",
+  "author": "Finn013",
+  "license": "MPL-2.0",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis portable --x64 --publish never"
+  },
+  "devDependencies": {
+    "electron": "33.2.1",
+    "electron-builder": "25.1.8"
+  },
+  "build": {
+    "appId": "com.finn013.persona",
+    "productName": "Persona",
+    "directories": { "output": "dist", "buildResources": "res" },
+    "files": ["src/**/*", "package.json"],
+    "win": {
+      "icon": "res/icon.ico",
+      "target": ["nsis", "portable"]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Persona",
+      "artifactName": "Persona-Setup-${version}.exe",
+      "language": "1049",
+      "installerLanguages": ["ru_RU"]
+    },
+    "portable": {
+      "artifactName": "Persona-Portable-${version}.exe"
+    }
+  }
+}
